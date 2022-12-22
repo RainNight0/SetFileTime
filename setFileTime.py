@@ -6,7 +6,7 @@ import time
 #可使用绝对路径或相对路径
 dir_path = './files'
 #file_suffix = '.txt'
-img_selection_dict = {
+file_selection_dict = {
 	'1' : '.png',
 	'2' : '.jpg',
 	'3' : '.jpeg',
@@ -39,7 +39,7 @@ def main(regular, file_suffix):
 	for root,dir_list,file_list in list:
 		for file_name in file_list:
 			file_path = os.path.join(root,file_name)
-			#这里设置扫描的文件格式(-4指文件名倒数四位数)
+			#这里设置扫描的文件格式(-4指文件名倒数四位字符串)
 			if file_name[-4:] == file_suffix or file_name[-5:] == file_suffix:
 				#print(file_name)
 				#取文件名中的时间
@@ -59,18 +59,18 @@ def format_selection_list(sd):
 #设置参数
 def file_format_selection():
 	print('请选择文件格式：')
-	print(format_selection_list(img_selection_dict))
-	while not (img_format := img_selection_dict.get(input())):
+	print(format_selection_list(file_selection_dict))
+	while not (file_format := file_selection_dict.get(input())):
 		print('非法参数，请重新输入：', end = '')
 	print('请选择日期格式：')
 	print(format_selection_list(date_format_selection_dict))
 	input_date_format = input()
 	while not (date_format := date_format_selection_dict.get(input_date_format)):
 		print('非法参数，请重新输入：', end = '')
-	print(f'你选择的文件格式{img_format}\n'
+	print(f'你选择的文件格式{file_format}\n'
 		f'你选择的日期格式{date_format}')
 	regular_format = date_format_regular_dict.get(input_date_format)
-	main(regular_format, img_format)
+	main(regular_format, file_format)
 
 
 if __name__ == '__main__':
